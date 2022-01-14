@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.example.android.rickandmorty.models.Character" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/grey"
+        app:strokeWidth="0.7dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatar_image_view"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{character.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RickAndMorty.CornerSize50Percent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/status_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/name_text_view"
+                app:layout_constraintStart_toEndOf="@id/avatar_image_view"
+                app:layout_constraintTop_toTopOf="@id/avatar_image_view"
+                app:status="@{character.status}"
+                tools:text="• Alive"
+                tools:textColor="@android:color/holo_green_dark" />
+
+            <TextView
+                android:id="@+id/name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@{character.name}"
+                android:textColor="@color/black2"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/gender_text_view"
+                app:layout_constraintStart_toStartOf="@id/status_text_view"
+                app:layout_constraintTop_toBottomOf="@id/status_text_view"
+                tools:text="Rick" />
+
+            <TextView
+                android:id="@+id/gender_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                app:genderAndSpecies="@{character}"
+                app:layout_constraintStart_toStartOf="@id/status_text_view"
+                app:layout_constraintTop_toBottomOf="@id/name_text_view"
+                tools:text="Male, Human" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
